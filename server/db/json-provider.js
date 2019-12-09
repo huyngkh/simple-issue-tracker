@@ -47,7 +47,7 @@ module.exports.insert = (jsonFile, obj) => {
             reject(err);
           } else {
             // mark done
-            resolve(obj);
+            resolve(newObj);
           }
         });
       }
