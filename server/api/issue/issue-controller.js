@@ -15,3 +15,14 @@ module.exports.createIssue = (req, res, next) => {
     genericHandle(req, res, next, () => issueService.createIssue(req.body));
   }
 };
+
+module.exports.changeState = (req, res, next) => {
+  const { id } = req.params;
+
+  if (!id) {
+    // return bad request httpCode
+    genericHandle(req, res, next, () => { return new Promise(resolve => resolve({})) }, 400);
+  } else {
+    genericHandle(req, res, next, () => issueService.changeState(req.params.id));
+  }
+};

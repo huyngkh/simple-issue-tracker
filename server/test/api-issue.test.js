@@ -1,4 +1,5 @@
 const request = require('supertest');
+const { ISSUE_STATE } = require('../api/constant');
 const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
@@ -52,4 +53,50 @@ describe('Issue API /api/issue', () => {
     });
   });
 
+  describe('Change issue state PUT /api/issue/:id', () => {
+    it('Should change the state from open to pending', async () => {
+      const res = await request(app)
+        .get('/api/issue/all');
+      // find an open issue
+      const openIssue = res.body.data.find(el => el.state === ISSUE_STATE.OPEN);
+
+      // start testing on the open Issue
+      const res2 = await request(app)
+        .put(`/api/issue/${openIssue.id}`);
+      expect(res2.statusCode).toEqual(200);
+      expect(res2.body).toHaveProperty('data');
+      expect(res2.body.data).toHaveProperty('state');
+      expect(res2.body.data.state).toEqual(ISSUE_STATE.PENDING);
+    });
+
+    it('Should change the state from pending to closed', async () => {
+      const res = await request(app)
+        .get('/api/issue/all');
+      // find an open issue
+      const openIssue = res.body.data.find(el => el.state === ISSUE_STATE.PENDING);
+
+      // start testing on the open Issue
+      const res2 = await request(app)
+        .put(`/api/issue/${openIssue.id}`);
+      expect(res2.statusCode).toEqual(200);
+      expect(res2.body).toHaveProperty('data');
+      expect(res2.body.data).toHaveProperty('state');
+      expect(res2.body.data.state).toEqual(ISSUE_STATE.CLOSED);
+    });
+
+    it('Should not change the closed issue\'s state', async () => {
+      const res = await request(app)
+        .get('/api/issue/all');
+      // find an open issue
+      const openIssue = res.body.data.find(el => el.state === ISSUE_STATE.CLOSED);
+
+      // start testing on the open Issue
+      const res2 = await request(app)
+        .put(`/api/issue/${openIssue.id}`);
+      expect(res2.statusCode).toEqual(200);
+      expect(res2.body).toHaveProperty('data');
+      expect(res2.body.data).toHaveProperty('state');
+      expect(res2.body.data.state).toEqual(ISSUE_STATE.CLOSED);
+    });
+  });
 })
