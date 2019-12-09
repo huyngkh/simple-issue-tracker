@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Support rendering rich text into issue description",
+    "description": "Currently there's isn't any way that I cannot markup or highlight some important phrases in an issue description. It's better to have this feature.",
+    "state": "open"
+  },
+  {
+    "id": 2,
+    "title": "Issue list is not responding when the number of issues is getting huge big",
+    "description": "I write a small script to massively create issues. Lately, I can not access the issue list anymore.",
+    "state": "pending"
+  },
+  {
+    "id": 3,
+    "title": "Issues are duplicated while doing a monkey test on 'Open issue' button",
+    "description": "Many duplicated issues are unexpectedly created when constantly clicking on 'Open Issue' button.",
+    "state": "closed"
+  }
+]
