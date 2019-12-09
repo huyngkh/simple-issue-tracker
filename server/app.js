@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const apiRouter = require('./api');
 
+app.use(cors());
 app.use(bodyParser.json());
 app.get("/", (req, res, next) => {
   res.json({ message: 'Server is alive'});
