@@ -1,10 +1,9 @@
 import React from 'react';
+import IssueList from './components/IssueTracker/IssueList';
 
 function App() {
   return (
-    <div className="App">
-      Simple Issue Tracker
-    </div>
+    <IssueList />
   );
 }
 
