@@ -1,0 +1,23 @@
+{
+  "name": "issue-tracker-service",
+  "version": "1.0.0",
+  "description": "This is a very simple restful api for simple issue tracker app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huyngkh/simple-issue-tracker/blob/master/server"
+  },
+  "keywords": [
+    "issue",
+    "tracker"
+  ],
+  "author": "Huy Nguyen",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
